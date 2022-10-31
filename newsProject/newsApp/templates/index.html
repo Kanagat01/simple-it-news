@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT News</title>
+    <link rel="shortcut icon" href="{% static 'images/icon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+</head>
+<body>
+    <nav class="navbar nb-5 navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class = "navbar-brand" href="#">IT News</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'HomePage' %}">Новости</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'admin:index' %}">Добавить Новость</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="main">
+        <div class="container" style="margin-top: 10px;">
+            <h1 class="display-6 mb-5">Новости</h1>
+            <div class="row">
+                {% for post in posts %}
+                <div class="col-md-3 nb-3">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ post.title }}</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">{{ post.postDate }}</h6>
+                          <p class="card-text">{{ post.content| truncatewords:20 }}</p>
+                          <div class="d-grid">
+                            <a href="{% url 'postDetail' pk=post.pk %}" class="btn btn-outline-primary">Читать</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

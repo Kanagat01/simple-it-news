@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link rel="shortcut icon" href="{% static 'images/icon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class = "navbar-brand" href="#">IT News</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'HomePage' %}">Новости</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'admin:index' %}">Добавить Новость</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mb-5" style="margin-top: 15px;">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#"></a></li>
+                <li class="breadcrumb-item"><a href="{% url 'HomePage' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+            </ol>
+          </nav>
+    </div>
+    <div class="main">
+        <div class="container">
+            <div class="card border border-0 shadow p-3 nb-5 bg-body rounded">
+                <div class="card-body">
+                    <h1 class="display-6 mb-2">{{ post.title }}</h1>
+                    <h4 class="subtitle nb-5">{{ post.postDate }}</h4>
+                    <p class="mb-5">{{ post.content }}</p>
+                    <a href="{% url 'admin:index' %}" class="btn btn-primary">Изменить</a>
+                    <a href="{% url 'admin:index' %}" class="btn btn-danger">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
